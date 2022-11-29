@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package post;
+
+service PostService {
+    rpc Create(PostForCreate) returns (PostInfo);
+    rpc GetPost(Id) returns (PostInfo);
+    rpc Update(PostInfo) returns(PostInfo);
+    rpc Delet(Id) returns (EmptyPost);
+    rpc GetByOwnerID(Id) returns (Posts);
+}
+
+message PostForCreate {
+    int64 poster_id= 1;
+    string description_post= 2;
+    repeated Media medias = 3;
+}
+message EmptyPost {
+
+}
+message Posts{
+    repeated PostInfo posts =1;
+
+}
+message Id {
+    int64 id =1;
+}
+
+message PostInfo {
+    int64 poster_id= 1;
+    int64 id = 2;
+    string description_post= 3;
+    repeated Media medias = 4;
+}
+message Media {
+   string name = 2;
+   string link= 3;
+   string type = 4;
+}

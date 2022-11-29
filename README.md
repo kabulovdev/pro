@@ -1,1 +1,1 @@
-# pro
+# gitlab.com/pro

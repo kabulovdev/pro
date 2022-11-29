@@ -1,0 +1,684 @@
+definitions:
+  custumer.Addresss:
+    properties:
+      home_adress:
+        type: string
+      street:
+        type: string
+    type: object
+  custumer.CustumAddress:
+    properties:
+      home_adress:
+        type: string
+      id:
+        type: integer
+      street:
+        type: string
+    type: object
+  custumer.CustumerAll:
+    properties:
+      allCustum:
+        items:
+          $ref: '#/definitions/custumer.CustumerInfo'
+        type: array
+    type: object
+  custumer.CustumerForCreate:
+    properties:
+      accessToken:
+        type: string
+      adres:
+        items:
+          $ref: '#/definitions/custumer.Addresss'
+        type: array
+      bio:
+        type: string
+      code:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+      posts:
+        $ref: '#/definitions/custumer.PostForCreate'
+    type: object
+  custumer.CustumerInfo:
+    properties:
+      accessToken:
+        type: string
+      adres:
+        items:
+          $ref: '#/definitions/custumer.CustumAddress'
+        type: array
+      bio:
+        type: string
+      code:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+    type: object
+  custumer.Empty:
+    type: object
+  custumer.GetAdminRes:
+    properties:
+      AccesToken:
+        type: string
+      Name:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  custumer.Media:
+    properties:
+      link:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  custumer.PostForCreate:
+    properties:
+      description_post:
+        type: string
+      medias:
+        items:
+          $ref: '#/definitions/custumer.Media'
+        type: array
+      poster_id:
+        type: integer
+    type: object
+  post.EmptyPost:
+    type: object
+  post.Media:
+    properties:
+      link:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  post.PostForCreate:
+    properties:
+      description_post:
+        type: string
+      medias:
+        items:
+          $ref: '#/definitions/post.Media'
+        type: array
+      poster_id:
+        type: integer
+    type: object
+  post.PostInfo:
+    properties:
+      description_post:
+        type: string
+      id:
+        type: integer
+      medias:
+        items:
+          $ref: '#/definitions/post.Media'
+        type: array
+      poster_id:
+        type: integer
+    type: object
+  reating.EmptyReating:
+    type: object
+  reating.ReatingForCreate:
+    properties:
+      custumer_id:
+        type: integer
+      description:
+        type: string
+      post_id:
+        type: integer
+      reating:
+        type: integer
+    type: object
+  reating.ReatingInfo:
+    properties:
+      custumer_id:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      post_id:
+        type: integer
+      reating:
+        type: integer
+    type: object
+  reating.Reatings:
+    properties:
+      reatins:
+        items:
+          $ref: '#/definitions/reating.ReatingInfo'
+        type: array
+    type: object
+info:
+  contact: {}
+  description: Created by Abduazim Kabulov
+paths:
+  /token:
+    get:
+      consumes:
+      - application/json
+      description: This API generates new access token
+      parameters:
+      - description: Refresh Token
+        in: query
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: object
+      summary: Get Accsess token
+      tags:
+      - Token
+  /v1/admin/login/{name}/{password}:
+    get:
+      consumes:
+      - application/json
+      description: Login admin
+      parameters:
+      - description: admin name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: admin password
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.GetAdminRes'
+      security:
+      - BearerAuth: []
+      summary: Login admin
+      tags:
+      - Login
+  /v1/custumer/create:
+    post:
+      consumes:
+      - application/json
+      description: this api create store
+      parameters:
+      - description: Custumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/custumer.CustumerForCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerInfo'
+      security:
+      - BearerAuth: []
+      summary: create store api
+      tags:
+      - Custumer
+  /v1/custumer/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: this api delet custumer with posts by id
+      parameters:
+      - description: Custumer id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.Empty'
+      security:
+      - BearerAuth: []
+      summary: delete Custumer api
+      tags:
+      - Custumer
+  /v1/custumer/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get custumer with posts by id
+      parameters:
+      - description: Custumer id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerInfo'
+      security:
+      - BearerAuth: []
+      summary: get Custumer api
+      tags:
+      - Custumer
+  /v1/custumer/getList:
+    get:
+      consumes:
+      - application/json
+      description: this api get custumers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerAll'
+      security:
+      - BearerAuth: []
+      summary: Get only custumers api
+      tags:
+      - Custumer
+  /v1/custumer/update:
+    put:
+      consumes:
+      - application/json
+      description: this api update custumer
+      parameters:
+      - description: Custumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/custumer.CustumerInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerInfo'
+      security:
+      - BearerAuth: []
+      summary: update custumer api
+      tags:
+      - Custumer
+  /v1/moder/login/{name}/{password}:
+    get:
+      consumes:
+      - application/json
+      description: Login moder
+      parameters:
+      - description: Moderator name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Moderator password
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.GetAdminRes'
+      security:
+      - BearerAuth: []
+      summary: Login moder
+      tags:
+      - Login
+  /v1/post/allInfo/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get Post by id
+      parameters:
+      - description: Poster id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: object
+      security:
+      - BearerAuth: []
+      summary: get Post api
+      tags:
+      - Post
+  /v1/post/create:
+    post:
+      consumes:
+      - application/json
+      description: this api create post
+      parameters:
+      - description: Custumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/post.PostForCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.PostInfo'
+      security:
+      - BearerAuth: []
+      summary: create post api
+      tags:
+      - Post
+  /v1/post/delet/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: this api posts by id
+      parameters:
+      - description: Post id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.EmptyPost'
+      security:
+      - BearerAuth: []
+      summary: delete Post api
+      tags:
+      - Post
+  /v1/post/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get post by id
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.PostInfo'
+      security:
+      - BearerAuth: []
+      summary: Get  post api
+      tags:
+      - Post
+  /v1/post/get/reatings/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get posts reating by id
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.Reatings'
+      security:
+      - BearerAuth: []
+      summary: Get  posts reating api
+      tags:
+      - Post
+  /v1/post/get/reatings/avarage/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get posts reating by id
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.Reatings'
+      security:
+      - BearerAuth: []
+      summary: Get  posts reating api
+      tags:
+      - Post
+  /v1/post/update:
+    put:
+      consumes:
+      - application/json
+      description: this api update Post
+      parameters:
+      - description: Post
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/post.PostInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.PostInfo'
+      security:
+      - BearerAuth: []
+      summary: update post api
+      tags:
+      - Post
+  /v1/reating/create:
+    post:
+      consumes:
+      - application/json
+      description: this api create reating
+      parameters:
+      - description: Custumer
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/reating.ReatingForCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.ReatingInfo'
+      security:
+      - BearerAuth: []
+      summary: create reating api
+      tags:
+      - Reating
+  /v1/reating/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: this api delet reating by id
+      parameters:
+      - description: reating id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.EmptyReating'
+      security:
+      - BearerAuth: []
+      summary: delete Reating api
+      tags:
+      - Reating
+  /v1/reating/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: this api get reating by id
+      parameters:
+      - description: reating id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.ReatingInfo'
+      security:
+      - BearerAuth: []
+      summary: Get reating api
+      tags:
+      - Reating
+  /v1/reating/update:
+    put:
+      consumes:
+      - application/json
+      description: this api update reating
+      parameters:
+      - description: reating
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/reating.ReatingInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/reating.ReatingInfo'
+      security:
+      - BearerAuth: []
+      summary: update reating api
+      tags:
+      - Reating
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers Custumer
+      parameters:
+      - description: Custumer
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/custumer.CustumerForCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerInfo'
+      security:
+      - BearerAuth: []
+      summary: Register Custumer
+      tags:
+      - Custumer
+  /v1/verify/{email}/{code}:
+    patch:
+      consumes:
+      - application/json
+      description: Verifys custumer
+      parameters:
+      - description: code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: email
+        in: path
+        name: email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/custumer.CustumerInfo'
+      security:
+      - BearerAuth: []
+      summary: Verify custumer
+      tags:
+      - Custumer
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

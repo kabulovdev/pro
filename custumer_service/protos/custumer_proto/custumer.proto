@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package custumer;
+
+service CustomService {
+    rpc Create(CustumerForCreate) returns (CustumerInfo);
+    rpc GetByCustumId(GetId) returns (CustumerInfo);
+    rpc Update(CustumerInfo) returns (CustumerInfo);
+    rpc DeletCustum(GetId) returns (Empty);
+    rpc ListAllCustum (Empty) returns (CustumerAll);
+    rpc CheckField(CheckFieldReq) returns (CheckFieldRes);
+    rpc GetAdmin(GetAdminReq) returns (GetAdminRes);
+    rpc GetModer(GetAdminReq) returns (GetAdminRes);
+
+
+}
+
+message GetAdminReq {
+    string Name = 1;
+    string Password = 2;
+}
+
+message GetAdminRes {
+    string Name = 1;
+    string AccesToken = 2;
+    string createdAt = 3;
+    string updatedAt = 4;
+    string password = 5;
+    string id = 6;
+}
+
+
+
+message RefreshTokenReq {
+    string token = 1;
+}
+
+ message Empty {
+
+ }
+message nimadur {
+    
+}
+
+message CheckFieldRes {
+    bool Exist = 1;
+}
+
+message GetId {
+    int64 id =1;
+}
+
+message CustumerAllInfo {
+    CustumerInfo custumer=1;
+    
+}
+
+message CheckFieldReq {
+    string field = 1;
+    string value = 2;
+}
+
+
+message CustumerForCreate {
+    int64 id=1;
+    string first_name=2;
+    string last_name=3;
+    string email =4;
+    string phoneNumber=5;
+    string accessToken=6;
+    string password=7;
+    string code =8;
+    string bio =9;
+    repeated Addresss adres =10; 
+    PostForCreate posts=11;
+}
+
+message Media {
+    string name = 2;
+    string link= 3;
+    string type = 4;
+ }
+
+message PostForCreate {
+    int64 poster_id= 1;
+    string description_post= 2;
+    repeated Media medias = 3;
+}
+message Addresss {
+    string street=1;
+    string home_adress=2;
+}
+
+message CustumerInfo{
+    int64 id =1;
+    string first_name=2;
+    string last_name=3;
+    string email =4;
+    string phoneNumber=5;
+    string accessToken=6;
+    string password=7;
+    string code =8;
+    string bio =9;
+    repeated CustumAddress adres =10; 
+}
+
+message CustumAddress {
+    int64 id =1;
+    string street=2;
+    string home_adress=3;
+}
+message CustumerAll{
+    repeated CustumerInfo allCustum=1;
+}
