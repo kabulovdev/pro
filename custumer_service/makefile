@@ -22,7 +22,7 @@ migrate_up:
 	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/custumer_db up
 
 migrate_down:
-	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/custumerdb down
+	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/custumer_db down
 
 migrate_force:
 	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/custumerdb force 2

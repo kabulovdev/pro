@@ -22,22 +22,3 @@ create table custumer_address (
     street text,
     home_address text
 );
-
-create table admins (
-        id serial primary key,
-		admin_name text, 
-		admin_password text,
-        created_at TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        updated_at TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        deleted_at TIMESTAMP(0) WITH TIME zone NULL
-
-);
-create table moders (
-        id serial primary key,
-		moder_name text, 
-		moder_password text,
-        created_at TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        updated_at TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        deleted_at TIMESTAMP(0) WITH TIME zone NULL
-
-);

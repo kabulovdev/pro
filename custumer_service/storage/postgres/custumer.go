@@ -217,6 +217,7 @@ func (r *custumRepo) Create(req *pb.CustumerForCreate) (*pb.CustumerInfo, error)
 	}
 	fmt.Println(addresses)
 	custumResp.Adres = addresses
+	fmt.Println(custumResp)
 	return &custumResp, nil
 }
 

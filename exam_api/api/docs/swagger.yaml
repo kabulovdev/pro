@@ -1,11 +1,4 @@
 definitions:
-  custumer.Addresss:
-    properties:
-      home_adress:
-        type: string
-      street:
-        type: string
-    type: object
   custumer.CustumAddress:
     properties:
       home_adress:
@@ -21,33 +14,6 @@ definitions:
         items:
           $ref: '#/definitions/custumer.CustumerInfo'
         type: array
-    type: object
-  custumer.CustumerForCreate:
-    properties:
-      accessToken:
-        type: string
-      adres:
-        items:
-          $ref: '#/definitions/custumer.Addresss'
-        type: array
-      bio:
-        type: string
-      code:
-        type: string
-      email:
-        type: string
-      first_name:
-        type: string
-      id:
-        type: integer
-      last_name:
-        type: string
-      password:
-        type: string
-      phoneNumber:
-        type: string
-      posts:
-        $ref: '#/definitions/custumer.PostForCreate'
     type: object
   custumer.CustumerInfo:
     properties:
@@ -91,24 +57,90 @@ definitions:
       updatedAt:
         type: string
     type: object
-  custumer.Media:
+  models.Addresss:
     properties:
-      link:
+      home_adress:
+        description: '`json:"home_adress"`'
         type: string
-      name:
-        type: string
-      type:
+      street:
+        description: '`json:"street"`'
         type: string
     type: object
-  custumer.PostForCreate:
+  models.CustumerCreateForAdmin:
+    properties:
+      adres:
+        items:
+          $ref: '#/definitions/models.Addresss'
+        type: array
+      bio:
+        description: '`json:"bio"`'
+        type: string
+      email:
+        description: '`json:"email"`'
+        type: string
+      first_name:
+        description: '`json:"first_name"`'
+        type: string
+      last_name:
+        description: '`json:"last_name"`'
+        type: string
+      password:
+        description: '`json:"password"`'
+        type: string
+      phoneNumber:
+        description: '`json:"phoneNumber"`'
+        type: string
+      posts:
+        $ref: '#/definitions/models.PostForCreate'
+    type: object
+  models.CustumerForCreate:
+    properties:
+      adres:
+        items:
+          $ref: '#/definitions/models.Addresss'
+        type: array
+      bio:
+        description: '`json:"bio"`'
+        type: string
+      email:
+        description: '`json:"email"`'
+        type: string
+      first_name:
+        description: '`json:"first_name"`'
+        type: string
+      last_name:
+        description: '`json:"last_name"`'
+        type: string
+      password:
+        description: '`json:"password"`'
+        type: string
+      phoneNumber:
+        description: '`json:"phoneNumber"`'
+        type: string
+    type: object
+  models.Media:
+    properties:
+      link:
+        description: '`json:"link"`'
+        type: string
+      name:
+        description: '`json:"name"`'
+        type: string
+      types:
+        description: '`json:"type"`'
+        type: string
+    type: object
+  models.PostForCreate:
     properties:
       description_post:
+        description: '`json:"description_post"`'
         type: string
       medias:
         items:
-          $ref: '#/definitions/custumer.Media'
+          $ref: '#/definitions/models.Media'
         type: array
       poster_id:
+        description: '`json:"poster_id"`'
         type: integer
     type: object
   post.EmptyPost:
@@ -241,7 +273,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/custumer.CustumerForCreate'
+          $ref: '#/definitions/models.CustumerCreateForAdmin'
       produces:
       - application/json
       responses:
@@ -635,7 +667,7 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/custumer.CustumerForCreate'
+          $ref: '#/definitions/models.CustumerForCreate'
       produces:
       - application/json
       responses:
@@ -647,7 +679,7 @@ paths:
       - BearerAuth: []
       summary: Register Custumer
       tags:
-      - Custumer
+      - Register
   /v1/verify/{email}/{code}:
     patch:
       consumes:
@@ -675,7 +707,7 @@ paths:
       - BearerAuth: []
       summary: Verify custumer
       tags:
-      - Custumer
+      - Register
 securityDefinitions:
   BearerAuth:
     in: header

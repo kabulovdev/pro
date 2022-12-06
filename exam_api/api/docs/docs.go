@@ -114,7 +114,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/custumer.CustumerForCreate"
+                            "$ref": "#/definitions/models.CustumerCreateForAdmin"
                         }
                     }
                 ],
@@ -740,7 +740,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Custumer"
+                    "Register"
                 ],
                 "summary": "Register Custumer",
                 "parameters": [
@@ -750,7 +750,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/custumer.CustumerForCreate"
+                            "$ref": "#/definitions/models.CustumerForCreate"
                         }
                     }
                 ],
@@ -779,7 +779,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Custumer"
+                    "Register"
                 ],
                 "summary": "Verify custumer",
                 "parameters": [
@@ -810,17 +810,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "custumer.Addresss": {
-            "type": "object",
-            "properties": {
-                "home_adress": {
-                    "type": "string"
-                },
-                "street": {
-                    "type": "string"
-                }
-            }
-        },
         "custumer.CustumAddress": {
             "type": "object",
             "properties": {
@@ -843,47 +832,6 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/custumer.CustumerInfo"
                     }
-                }
-            }
-        },
-        "custumer.CustumerForCreate": {
-            "type": "object",
-            "properties": {
-                "accessToken": {
-                    "type": "string"
-                },
-                "adres": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/custumer.Addresss"
-                    }
-                },
-                "bio": {
-                    "type": "string"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "posts": {
-                    "$ref": "#/definitions/custumer.PostForCreate"
                 }
             }
         },
@@ -951,33 +899,124 @@ const docTemplate = `{
                 }
             }
         },
-        "custumer.Media": {
+        "models.Addresss": {
             "type": "object",
             "properties": {
-                "link": {
+                "home_adress": {
+                    "description": "` + "`" + `json:\"home_adress\"` + "`" + `",
                     "type": "string"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
+                "street": {
+                    "description": "` + "`" + `json:\"street\"` + "`" + `",
                     "type": "string"
                 }
             }
         },
-        "custumer.PostForCreate": {
+        "models.CustumerCreateForAdmin": {
+            "type": "object",
+            "properties": {
+                "adres": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Addresss"
+                    }
+                },
+                "bio": {
+                    "description": "` + "`" + `json:\"bio\"` + "`" + `",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "` + "`" + `json:\"email\"` + "`" + `",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "` + "`" + `json:\"first_name\"` + "`" + `",
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "` + "`" + `json:\"last_name\"` + "`" + `",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "` + "`" + `json:\"password\"` + "`" + `",
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "` + "`" + `json:\"phoneNumber\"` + "`" + `",
+                    "type": "string"
+                },
+                "posts": {
+                    "$ref": "#/definitions/models.PostForCreate"
+                }
+            }
+        },
+        "models.CustumerForCreate": {
+            "type": "object",
+            "properties": {
+                "adres": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Addresss"
+                    }
+                },
+                "bio": {
+                    "description": "` + "`" + `json:\"bio\"` + "`" + `",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "` + "`" + `json:\"email\"` + "`" + `",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "` + "`" + `json:\"first_name\"` + "`" + `",
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "` + "`" + `json:\"last_name\"` + "`" + `",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "` + "`" + `json:\"password\"` + "`" + `",
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "` + "`" + `json:\"phoneNumber\"` + "`" + `",
+                    "type": "string"
+                }
+            }
+        },
+        "models.Media": {
+            "type": "object",
+            "properties": {
+                "link": {
+                    "description": "` + "`" + `json:\"link\"` + "`" + `",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "` + "`" + `json:\"name\"` + "`" + `",
+                    "type": "string"
+                },
+                "types": {
+                    "description": "` + "`" + `json:\"type\"` + "`" + `",
+                    "type": "string"
+                }
+            }
+        },
+        "models.PostForCreate": {
             "type": "object",
             "properties": {
                 "description_post": {
+                    "description": "` + "`" + `json:\"description_post\"` + "`" + `",
                     "type": "string"
                 },
                 "medias": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/custumer.Media"
+                        "$ref": "#/definitions/models.Media"
                     }
                 },
                 "poster_id": {
+                    "description": "` + "`" + `json:\"poster_id\"` + "`" + `",
                     "type": "integer"
                 }
             }

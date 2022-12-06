@@ -38,6 +38,7 @@ func (r *reatingRepo) GetPostReating(req *pb.Id) (*pb.Reatings, error) {
 	result := pb.Reatings{}
 	rows, err := r.db.Query(`select 
 	id,
+	post_id,
 	custumer_id,
     rating,
     description
@@ -50,6 +51,7 @@ func (r *reatingRepo) GetPostReating(req *pb.Id) (*pb.Reatings, error) {
 		red := pb.ReatingInfo{}
 		err = rows.Scan(
 			&red.Id,
+			&red.PostId,
 			&red.CustumerId,
 			&red.Reating,
 			&red.Description)

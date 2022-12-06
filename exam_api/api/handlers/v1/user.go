@@ -213,7 +213,7 @@ func (h *handlerV1) DeletePost(c *gin.Context) {
 // @Security BearerAuth
 // @Accept json
 // @Produce json
-// @Param request body custumer.CustumerForCreate true "Custumer"
+// @Param request body models.CustumerCreateForAdmin true "Custumer"
 // @Success 200 {object} custumer.CustumerInfo
 // @Router /v1/custumer/create [post]
 func (h *handlerV1) CreateCustumer(c *gin.Context) {
@@ -758,7 +758,9 @@ func (h *handlerV1) Verify(c *gin.Context) {
 		return
 	}
 	body.AccessToken = accessToken
+	fmt.Println(body.Adres)
 	res, err := h.serviceManager.CustumerService().Create(ctx, &body)
+	fmt.Println(res)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -781,7 +783,7 @@ func (h *handlerV1) Verify(c *gin.Context) {
 // @Security BearerAuth
 // @Accept       json
 // @Produce      json
-// @Param        user   body   custumer.CustumerForCreate   true  "Custumer"
+// @Param        user   body   models.CustumerForCreate   true  "Custumer"
 // @Success      200  {object}  custumer.CustumerInfo
 // @Router       /v1/register [post]
 func (h *handlerV1) RegisterUser(c *gin.Context) {
@@ -796,11 +798,11 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 		h.log.Error("Error while binding json", l.Any("json", err))
 		return
 	}
+	fmt.Println(body.FirstName)
 	body.Email = strings.TrimSpace(body.Email)
 	body.FirstName = strings.TrimSpace(body.FirstName)
-
 	body.Email = strings.ToLower(body.Email)
-
+	fmt.Println(body.Adres)
 	body.Password, err = etc.HashPassword(body.Password)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, "Something went wrong")
@@ -863,6 +865,7 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 	c.JSON(http.StatusAccepted, gin.H{
 		"info": "Your request is accepted we have sent you an email message, please check and verify",
 	})
+	fmt.Println(body.Adres)
 	fmt.Println(body.Code)
 	fmt.Println(body.Email)
 	fmt.Println(string(bodyByte))

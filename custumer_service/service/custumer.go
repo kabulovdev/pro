@@ -93,14 +93,28 @@ func (s *CustumerService) Create(ctx context.Context, req *pb.CustumerForCreate)
 		s.logger.Error("error while creating custumer", l.Any("error creating custumer", err))
 		return &pb.CustumerInfo{}, status.Error(codes.Internal, "something went wrong")
 	}
+	fmt.Println("oneni ami store yiban bu",&store)
 	post := req.Posts
-	fmt.Println(post)
-	err = s.produceMessage(post)
-	if err != nil {
-		s.logger.Error("Error while produce to Kafka", l.Any("error produce customer", err))
-		return &pb.CustumerInfo{}, status.Error(codes.Internal, "failed while produce customer info")
+	fmt.Println("bu yiban post",post)
+	//fmt.Println("hi iam ERRR")
+	
+	//post.PosterId=id
+	//fmt.Println("HI IAM ERRR")
+	//fmt.Println(post)
+	if post != nil {
+		id:=store.Id
+		post.PosterId=id
+		err = s.produceMessage(post)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		return store, nil
+	}else{
+		fmt.Println(store)
+		return store, nil
 	}
-	return store, nil
+    
 }
 
 func (s *CustumerService) CheckField(ctx context.Context, req *pb.CheckFieldReq) (*pb.CheckFieldRes, error) {

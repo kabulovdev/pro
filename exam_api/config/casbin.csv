@@ -7,6 +7,8 @@ p, authorized, /v1/post/create, POST
 p, authorized, /v1/reating/create, POST       
 p, authorized, /v1/post/get/reatings/{id}, GET    
 p, authorized, /v1/post/get/{id}, GET  
+p, admin, /v1/custumer/create, POST
+p, moder, /v1/custumer/create, POST
 p, admin, /v1/custumer/getList, GET    
 p, moder, /v1/custumer/getList, GET        
 p, admin, /v1/custumer/get/{id}, GET             
