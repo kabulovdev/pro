@@ -89,6 +89,12 @@ third
 You should 
 create topic in localhost:8080; Name topic customer.customer
 
+Swagger doc:
+```
+http://localhost:9079/v1/swagger/index.html#/
+```
+
+
 
 ## After run and creating topic in terminal
 
