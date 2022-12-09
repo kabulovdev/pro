@@ -39,7 +39,7 @@ func NewKafkaConsumer(db *sqlx.DB, conf *config.Config, log logger.Logger, topic
 }
 
 func (k KafkaConsumer) Start() {
-	fmt.Println(">>> Consumer started.")
+	fmt.Println("Consumer started.")
 	for {
 
 		m, err := k.KafkaConsumer.ReadMessage(context.Background())
