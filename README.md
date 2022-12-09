@@ -5,26 +5,36 @@
 
 
 ## Technologies used in this service
-Technologies
+### Technologies
 
-```
-Programming language:
+
+### Programming language:
+
+
 golang programming language
 
 
-Database:
+### Database:
+
+
 PostgresSql
 
-Technologies:
+### Technologies:
+
+
 gRPC for connecting microservices
 kafka for connecting microservice
 
 
-Connection Database:
+### Connection Database:
+
+
 sqlx Conn to connect to PostgreSql
 
 
-Libraries used:
+### Libraries used:
+
+
      "google.golang.org/grpc"
 	 "google.golang.org/grpc/reflection"
      "github.com/spf13/cast"
@@ -32,7 +42,6 @@ Libraries used:
      "google.golang.org/grpc/codes"
      "google.golang.org/grpc/status"
 
-```
 
 ## Get Clone
 
@@ -66,6 +75,8 @@ make migrate_up
 ## Run 
 
 Steps
+
+
 first
 ```
 sudo docker compose build
