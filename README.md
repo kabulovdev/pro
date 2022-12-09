@@ -19,6 +19,8 @@ PostgresSql
 
 
 gRPC for connecting microservices
+
+
 kafka for connecting microservice
 
 
