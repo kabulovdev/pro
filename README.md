@@ -2,14 +2,8 @@
 
 ## Getting started
 
-Open following path in your local machine 
 
-~go/src/gitlab.com/team
 
-Inside the folder do the following
-```
-git clone git@gitlab.com:dreamteam/review_service.git
-```
 ## Technologies used in this service
 Technologies
 
@@ -69,6 +63,33 @@ down:
 make migrate_up
 ```
 
+## Run 
+
+Steps
+first
+```
+sudo docker compose build
+```
+second
+```
+sudo odcker compose up
+```
+third
+
+
+You should 
+Create topic in localhost:8080; Name topic customer.customer
+
+
+## After run and creating topic in terminal
+
+```
+docker stop post_service
+```
+
+```
+docker start post_service
+```
 
 ## Admin & Moder
 Admin
