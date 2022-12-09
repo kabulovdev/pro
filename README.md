@@ -35,14 +35,58 @@ Libraries used:
 	 "google.golang.org/grpc/reflection"
      "github.com/spf13/cast"
      "github.com/jmoiron/sqlx"
-     "github.com/google/uuid"(https://myoctocat.com
      "google.golang.org/grpc/codes"
      "google.golang.org/grpc/status"
 
 ```
+
+## Get Clone
+
+ssh: 
+```
+git@github.com:kabulovdev/pro.git 
+
+```
+https:
+```
+https://github.com/kabulovdev/pro.git
+
+```
+
+## Note!!!
+
+This project's database is built on AWS
+
+If you want to restore the database
+you should cd services and 
+up:
+```
+make migrate_down
+
+```
+down:
+```
+make migrate_up
+```
+
+
 ## Admin & Moder
 Admin
-n: abduazim p: sdy12197 
+name: 
+```
+abduazim 
+```
+password: 
+```
+sdy12197
+``` 
 
 Moder
-n: kabulov p: sdy12197
+name: 
+```
+kabulov 
+```
+password: 
+```
+sdy12197
+``` 
