@@ -1,9 +1,5 @@
 # Exam project
 
-## Getting started
-
-
-
 ## Technologies used in this service
 ### Technologies
 
@@ -89,7 +85,7 @@ third
 
 
 You should 
-Create topic in localhost:8080; Name topic customer.customer
+create topic in localhost:8080; Name topic customer.customer
 
 
 ## After run and creating topic in terminal
