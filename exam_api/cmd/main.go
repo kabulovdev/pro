@@ -59,6 +59,7 @@ func main() {
 		Dial: func() (redis.Conn, error) {
 			return redis.Dial("tcp", cfg.RedisHost+":"+cfg.RedisPort)
 		},
+		
 	}
 
 	server := api.New(api.Option{

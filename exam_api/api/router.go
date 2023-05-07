@@ -38,11 +38,11 @@ type Option struct {
 func New(option Option) *gin.Engine {
 	router := gin.New()
 	corConfig := cors.DefaultConfig()
-  corConfig.AllowAllOrigins = true
-  corConfig.AllowCredentials = true
-  corConfig.AllowHeaders = []string{"*"}
-  corConfig.AllowBrowserExtensions = true
-  corConfig.AllowMethods = []string{"*"}
+  	corConfig.AllowAllOrigins = true
+ 	corConfig.AllowCredentials = true
+ 	corConfig.AllowHeaders = []string{"*"}
+  	corConfig.AllowBrowserExtensions = true
+  	corConfig.AllowMethods = []string{"*"}
 
 
 	router.Use(gin.Logger())

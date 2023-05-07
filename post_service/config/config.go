@@ -22,11 +22,11 @@ type Config struct{
 func Load() Config{
 	c:=Config{}
 	c.Environment=cast.ToString(getOrReturnDefault("ENVIRONMENT","develop"))
-	c.PostgresHost=cast.ToString(getOrReturnDefault("POSTGRES_HOST","database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com"))
+	c.PostgresHost=cast.ToString(getOrReturnDefault("POSTGRES_HOST","localhost"))
 	c.PostgresPort=cast.ToInt(getOrReturnDefault("POSTGRES_PORT",5432))
 	c.PostgresDatabase=cast.ToString(getOrReturnDefault("POSTGRES_DATABASE","post_db"))
-	c.PostgresUser=cast.ToString(getOrReturnDefault("POSTGRES_USER","abduazim"))
-	c.PostgresPassword=cast.ToString(getOrReturnDefault("POSTGRES_PASSWORD","1234"))
+	c.PostgresUser=cast.ToString(getOrReturnDefault("POSTGRES_USER","postgres"))
+	c.PostgresPassword=cast.ToString(getOrReturnDefault("POSTGRES_PASSWORD","sdy12197"))
 	//c.KafkaHost = cast.ToString(getOrReturnDefault("KAFKA_HOST", "kafka"))
 	//c.KafkaPort = cast.ToString(getOrReturnDefault("KAFKA_PORT", "9092"))
 	c.LogLevel=cast.ToString(getOrReturnDefault("LOG_LEVEL","debug"))

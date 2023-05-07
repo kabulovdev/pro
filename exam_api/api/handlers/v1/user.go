@@ -870,7 +870,9 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 	fmt.Println(body.Code)
 	fmt.Println(body.Email)
 	fmt.Println(string(bodyByte))
+	
 	err = h.redis.SetWithTTL(body.Email, string(bodyByte), 300)
+	
 	fmt.Println(body.Email)
 	if err != nil {
 		h.log.Error("Error while marshaling to json", l.Any("json", err))

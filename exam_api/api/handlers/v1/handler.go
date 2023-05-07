@@ -1,15 +1,17 @@
 package v1
 
 import (
-	"gitlab.com/pro/exam_api/config"
 	"fmt"
-	jwthandler "gitlab.com/pro/exam_api/api/tokens"
-	"gitlab.com/pro/exam_api/pkg/logger"
-	t "gitlab.com/pro/exam_api/api/tokens"
-	"gitlab.com/pro/exam_api/storage/repo"
-	"gitlab.com/pro/exam_api/services"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	//"gitlab.com/dars_nt/api-gateway/api/handlers/models"
+	jwthandler "gitlab.com/pro/exam_api/api/tokens"
+	t "gitlab.com/pro/exam_api/api/tokens"
+	"gitlab.com/pro/exam_api/config"
+	"gitlab.com/pro/exam_api/pkg/logger"
+	"gitlab.com/pro/exam_api/services"
+	"gitlab.com/pro/exam_api/storage/repo"
 )
 
 type handlerV1 struct {
@@ -66,4 +68,10 @@ func New(c *HandlerV1Config) *handlerV1 {
 		claims.Token = token
 		return &claims, nil
 	
-	}
+//	}
+//func GetClaims(h *handlerV1, c *gin.Context) jwt.MapClaims {
+//	var (
+//		authorization models.GetPageOfUsersRequest
+//	)
+
+}

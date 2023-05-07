@@ -25,14 +25,14 @@ func NewKafkaHandlerFunc(config config.Config, storage storage.IStorage, log log
 }
 
 func (h *KafkaHandler) Handle(value []byte) error {
-	user := pp.PostForCreate{}
-	err := user.Unmarshal(value)
+	post := pp.PostForCreate{}
+	err := post.Unmarshal(value)
 	if err != nil {
 		return err
 	}
 	fmt.Println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-	fmt.Println(user)
-	_,err = h.storage.Post().Create(&user)
+	fmt.Println(post)
+	_,err = h.storage.Post().Create(&post)
 	if err != nil {
 		return err
 	}

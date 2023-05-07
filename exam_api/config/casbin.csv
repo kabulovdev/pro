@@ -11,7 +11,7 @@ p, admin, /v1/custumer/create, POST
 p, moder, /v1/custumer/create, POST
 p, admin, /v1/custumer/getList, GET    
 p, moder, /v1/custumer/getList, GET        
-p, admin, /v1/custumer/get/{id}, GET             
+p, authorized, /v1/custumer/get/{id}, GET             
 p, admin, /v1/custumer/delete/{id}, DELETE        
 p, admin, /v1/custumer/update, PUT            
 p, admin, /v1/reating/update, PUT     

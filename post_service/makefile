@@ -20,10 +20,10 @@ run_script:
 	./script/gen-proto.sh
 	
 migrate_up:
-	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/post_db up
+	migrate -path migration/ -database postgres://postgres:sdy12197@localhost/post_db up
 
 migrate_down:
-	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/post_db down
+	migrate -path migration/ -database postgres://postgres:sdy12197@localhost/post_db down
 
 migrate_force:
 	migrate -path migration/ -database postgres://abduazim:1234@database-1.c9lxq3r1itbt.us-east-1.rds.amazonaws.com/post_db force 2

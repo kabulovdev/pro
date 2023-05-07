@@ -32,12 +32,10 @@ func NewCustumService(db *sqlx.DB, log l.Logger, producer map[string]messagebrok
 }
 
 func (s *CustumerService) produceMessage(raw *pb.PostForCreate) error {
-	fmt.Println(raw)
 	data, err := raw.Marshal()
 	if err != nil {
 		return err
 	}
-	fmt.Println(string(data))
 	logPost := raw.String()
 	fmt.Println(logPost)
 	err = s.producer["customer"].Produce([]byte("customer"), data, logPost)
@@ -93,9 +91,7 @@ func (s *CustumerService) Create(ctx context.Context, req *pb.CustumerForCreate)
 		s.logger.Error("error while creating custumer", l.Any("error creating custumer", err))
 		return &pb.CustumerInfo{}, status.Error(codes.Internal, "something went wrong")
 	}
-	fmt.Println("oneni ami store yiban bu",&store)
 	post := req.Posts
-	fmt.Println("bu yiban post",post)
 	//fmt.Println("hi iam ERRR")
 	
 	//post.PosterId=id

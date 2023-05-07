@@ -55,7 +55,7 @@ func Load() Config {
 	c.ReatingServiceHost = cast.ToString(getOrReturnDefault("REATING_SERVICE_HOST", "reating_service"))
 	c.ReatingServicePort = cast.ToInt(getOrReturnDefault("RATING_SERVIC_PORT", 9084))
 
-	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST","redis"))
+	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST","localhost"))
 	c.RedisPort = cast.ToString(getOrReturnDefault("REDIS_PORT","6379"))
 
 	c.SignKey = cast.ToString(getOrReturnDefault("SIGN_KEY", "secret"))
