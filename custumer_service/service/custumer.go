@@ -86,7 +86,7 @@ func (s *CustumerService) GetByCustumId(ctx context.Context, req *pb.GetId) (*pb
 
 func (s *CustumerService) Create(ctx context.Context, req *pb.CustumerForCreate) (*pb.CustumerInfo, error) {
 	fmt.Println(req)
-	store, err := s.storage.Custum().Create(req)
+	store, err := s.storage.Custum().Create(ctx ,req)
 	if err != nil {
 		s.logger.Error("error while creating custumer", l.Any("error creating custumer", err))
 		return &pb.CustumerInfo{}, status.Error(codes.Internal, "something went wrong")

@@ -43,8 +43,6 @@ func Load() Config {
 	c.PostServicePort = cast.ToInt(getOrReturnDefault("POST_PORT", 9083))
 	c.LogLevel = cast.ToString(getOrReturnDefault("LOG_LEVEL", "debug"))
 
-	//c.KafkaHost = cast.ToString(getOrReturnDefault("KAFKA_HOST", "kafka"))
-	//c.KafkaPort = cast.ToString(getOrReturnDefault("KAFKA_PORT", "9092"))
 
 	c.RPCPort = cast.ToString(getOrReturnDefault("RPC_PORT", ":9088"))
 	return c

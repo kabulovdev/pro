@@ -3,7 +3,8 @@ package postgres
 import (
 	"fmt"
 	pb "gitlab.com/pro/custumer_service/genproto/custumer_proto"
-
+	"context"
+	"github.com/opentracing/opentracing-go"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -170,7 +171,9 @@ func (r *custumRepo) GetByCustumId(req *pb.GetId) (*pb.CustumerInfo, error) {
 	return &result, nil
 }
 
-func (r *custumRepo) Create(req *pb.CustumerForCreate) (*pb.CustumerInfo, error) {
+func (r *custumRepo) Create(ctx context.Context, req *pb.CustumerForCreate) (*pb.CustumerInfo, error) {
+	trace, ctx := opentracing.StartSpanFromContext(ctx, "CreateAdress")
+	defer trace.Finish()
 	custumResp := pb.CustumerInfo{}
 	err := r.db.QueryRow(`
 	insert into custumer_base (

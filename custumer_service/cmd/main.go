@@ -11,15 +11,39 @@ import (
 	"gitlab.com/pro/custumer_service/pkg/logger"
 	"gitlab.com/pro/custumer_service/pkg/messagebroker"
 	"gitlab.com/pro/custumer_service/service"
-
+	"github.com/uber/jaeger-client-go"
+	jaegercfg "github.com/uber/jaeger-client-go/config"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
 
 func main() {
+
+
+
 	cfg := config.Load()
 
 	log := logger.New(cfg.LogLevel, "")
+	
+	conf := jaegercfg.Configuration{
+		Sampler: &jaegercfg.SamplerConfig{
+			Type:  jaeger.SamplerTypeConst,
+			Param: 10,
+		},
+		Reporter: &jaegercfg.ReporterConfig{
+			LogSpans:           true,
+			LocalAgentHostPort: "127.0.0.1:6831",
+		},
+	}
+
+	closer, err := conf.InitGlobalTracer(
+		"user-service",
+	)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer closer.Close()
+	
 	defer logger.Cleanup(log)
 
 	log.Info("main:sqlxConfig",
